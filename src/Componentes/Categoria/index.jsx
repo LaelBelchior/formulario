@@ -1,55 +1,66 @@
-import React from 'react'
-import {TextField, Button, Container} from '@material-ui/core'
-import {InputLabel, MenuItem, FormControl, Select} from '@material-ui/core'
+import React, { useState } from 'react'
+import { TextField, Button, Container, useTheme } from '@material-ui/core'
+import { InputLabel, MenuItem, FormControl, Select } from '@material-ui/core'
 
-export default function FormularioCategoria(){
+export default function FormularioCategoria({ aoEnviar }) {
+    const [equipe, setEquipe] = useState("")
+    const [faixa, setFaixa] = useState("")
+    const [categoria, setCategoria] = useState("")
 
-    return(
 
-        <Container maxWidth='sm'>
+    return (
 
-            <TextField margin='normal' id='equipe' label='Equipe' fullWidth/>
-            <FormControl fullWidth margin='normal'>
+        <form onSubmit={(event) => {
+            event.preventDefault()
+            aoEnviar({ equipe, faixa, categoria })
+        }}>
 
-                <InputLabel>Faixa</InputLabel>
-                <Select id='faixa'>
+            <Container maxWidth='sm'>
 
-                    <MenuItem value='Branca'>Branca</MenuItem>
-                    <MenuItem value='Cinza'>Cinza</MenuItem>
-                    <MenuItem value='Amarela'>Amarela</MenuItem>
-                    <MenuItem value='Laranja'>Laranja</MenuItem>
-                    <MenuItem value='Verde'>Verde</MenuItem>
-                    <MenuItem value='Azul'>Azul</MenuItem>
-                    <MenuItem value='Roxa'>Roxa</MenuItem>
-                    <MenuItem value='Marrom'>Marrom</MenuItem>
-                    <MenuItem value='Preta'>Preta</MenuItem>
+                <TextField value={equipe} onChange={(event) => setEquipe(event.target.value)} margin='normal' id='equipe' label='Equipe' fullWidth />
+                <FormControl fullWidth margin='normal'>
 
-                </Select>
+                    <InputLabel>Faixa</InputLabel>
+                    <Select value={faixa} onChange={(event) => { setFaixa(event.target.value) }} id='faixa'>
 
-            </FormControl>
+                        <MenuItem value='Branca'>Branca</MenuItem>
+                        <MenuItem value='Cinza'>Cinza</MenuItem>
+                        <MenuItem value='Amarela'>Amarela</MenuItem>
+                        <MenuItem value='Laranja'>Laranja</MenuItem>
+                        <MenuItem value='Verde'>Verde</MenuItem>
+                        <MenuItem value='Azul'>Azul</MenuItem>
+                        <MenuItem value='Roxa'>Roxa</MenuItem>
+                        <MenuItem value='Marrom'>Marrom</MenuItem>
+                        <MenuItem value='Preta'>Preta</MenuItem>
 
-            <FormControl fullWidth margin='normal'>
+                    </Select>
 
-                <InputLabel>Categoria</InputLabel>
-                <Select id='Categoria'>
+                </FormControl>
 
-                    <MenuItem value='Galo'>Galo</MenuItem>
-                    <MenuItem value='Pluma'>Pluma</MenuItem>
-                    <MenuItem value='Pena'>Pena</MenuItem>
-                    <MenuItem value='Leve'>Leve</MenuItem>
-                    <MenuItem value='Médio'>Médio</MenuItem>
-                    <MenuItem value='Meio-Pesado'>Meio-Pesado</MenuItem>
-                    <MenuItem value='Pesado'>Pesado</MenuItem>
-                    <MenuItem value='Super-Pesado'>Super-Pesado</MenuItem>
-                    <MenuItem value='Pesadíssimo'>Pesadíssimo</MenuItem>
+                <FormControl fullWidth margin='normal'>
 
-                </Select>
+                    <InputLabel>Categoria</InputLabel>
+                    <Select value={categoria} onChange={(event) => { setCategoria(event.target.value) }} id='Categoria'>
 
-            </FormControl>
- 
-            <Button type='submit' variant='contained' color='primary'>Finalizar</Button>
+                        <MenuItem value='Galo'>Galo</MenuItem>
+                        <MenuItem value='Pluma'>Pluma</MenuItem>
+                        <MenuItem value='Pena'>Pena</MenuItem>
+                        <MenuItem value='Leve'>Leve</MenuItem>
+                        <MenuItem value='Médio'>Médio</MenuItem>
+                        <MenuItem value='Meio-Pesado'>Meio-Pesado</MenuItem>
+                        <MenuItem value='Pesado'>Pesado</MenuItem>
+                        <MenuItem value='Super-Pesado'>Super-Pesado</MenuItem>
+                        <MenuItem value='Pesadíssimo'>Pesadíssimo</MenuItem>
 
-        </Container>
+                    </Select>
+
+                </FormControl>
+
+                <Button type='submit' variant='contained' color='primary'>Finalizar</Button>
+
+            </Container>
+
+        </form>
 
     )
 
