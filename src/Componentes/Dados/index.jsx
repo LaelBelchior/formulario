@@ -13,7 +13,7 @@ export default function FormularioDados({ aoEnviar }) {
 
     return (
 
-        <Container maxWidth='sm'>
+        <Container maxWidth='sm' align="center">
 
             <form onSubmit={(event) => {
                 event.preventDefault()

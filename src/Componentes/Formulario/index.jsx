@@ -1,20 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-import FormularioLogin from './Componentes/Login/'
-import FormularioDados from './Componentes/Dados/'
-import FormularioCategoria from "./Componentes/Categoria/"
+import FormularioLogin from "../Login/"
+import FormularioDados from "../Dados/"
+import FormularioCategoria from "../Categoria/"
 
-export default function FormularioCadastro() {
+export default function FormularioCadastro({ aoEnviar }) {
 
     const [etapaAtual, setEtapaAtual] = useState(0)
+    const [dadosColetados, setDados] = useState({})
+
+    useEffect(()=>{console.log(dadosColetados)})
 
     const formularios = [
 
-        <FormularioLogin />,
-        <FormularioDados />,
-        <FormularioCategoria />
+        <FormularioLogin aoEnviar={coletarDados}/>,
+        <FormularioDados aoEnviar={coletarDados}/>,
+        <FormularioCategoria aoEnviar={coletarDados}/>
 
     ]
+
+    function coletarDados(dados) {
+
+        setDados({...dadosColetados, ...dados})
+        proximo()
+
+    }
 
     function proximo() {
 
